@@ -33,7 +33,13 @@ public class UserEntity extends BaseEntity implements AutoIncrementId {
 
 
     public Optional<FollowEntity> getFollowsById(Long id) {
-        List<FollowEntity> follower = this.follows.stream().filter(follow -> follow.getFollowee().equals(id)).collect(Collectors.toList());
+        if (this.follows == null) {
+            return Optional.empty(); // Return an empty Optional if follows is null
+        }
+
+        List<FollowEntity> follower = this.follows.stream()
+                .filter(follow -> follow.getFollowee().equals(id))
+                .collect(Collectors.toList());
         if (follower.isEmpty()) {
             return Optional.empty();
         }

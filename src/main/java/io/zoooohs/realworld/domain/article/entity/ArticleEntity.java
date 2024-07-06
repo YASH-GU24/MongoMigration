@@ -43,9 +43,22 @@ public class ArticleEntity extends BaseEntity implements AutoIncrementId {
         this.description = description;
         this.body = body;
         this.commentIdCounter = commentIdCounter;
-        this.comments = new ArrayList<>(comments);
-        this.tags = new ArrayList<>(tags);
-        this.favorites = new ArrayList<>(favorites);
+        if (comments != null) {
+            this.comments = new ArrayList<>(comments);
+        } else {
+            this.comments = new ArrayList<>(); // or handle the null case as needed
+        }
+
+        if (tags != null) {
+            this.tags = new ArrayList<>(tags);
+        } else {
+            this.tags = new ArrayList<>(); // or handle the null case as needed
+        }
+        if (favorites != null) {
+            this.favorites = new ArrayList<>(favorites);
+        } else {
+            this.favorites = new ArrayList<>(); // or handle the null case as needed
+        }
     }
 
     // Getters and Setters
